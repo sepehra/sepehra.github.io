@@ -1,7 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delayed Character Print</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Source Code Pro', "Courier New", Courier, monospace !important;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000000;
+    }
+    #output {
+      font-size: 20px;
+      white-space: pre-wrap; /* Ensure line breaks are respected */
+      font-family: 'Source Code Pro', "Courier New", Courier, monospace !important;
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+  <div id="output"></div>
+
+  <script>
+    const message = `
+    _     __        __   _       ____                  _ 
+   / \\    \\ \\      / /__| |__   |  _ \\ __ _  __ _  ___| |
+  / _ \\    \\ \\ /\\ / / _ \\ '_ \\  | |_) / _\` |/ _\` |/ _ \\ |
+ / ___ \\    \\ V  V /  __/ |_) | |  __/ (_| | (_| |  __/_|
+/_/   \\_\\    \\_/\\_/ \\___|_.__/  |_|   \\__,_|\\__, |\\___(_)
+                                            |___/        
+    `;
+    
+    let index = 0;
+    const outputElement = document.getElementById('output');
+
+    function printCharacter() {
+      if (index < message.length) {
+        outputElement.textContent += message.charAt(index);
+        index++;
+        setTimeout(printCharacter, 20); // Delay of 20ms for each character
+      }
+    }
+
+    // Start printing the message with a slight delay for safety
+    setTimeout(printCharacter, 100);
+  </script>
+
 </body>
 </html>
